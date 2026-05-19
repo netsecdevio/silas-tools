@@ -1,0 +1,7 @@
+{
+  "rigor-db": {
+    "type": "http",
+    "url": "http://localhost:3100",
+    "tools": ["*"]
+  }
+}
