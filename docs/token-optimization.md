@@ -32,7 +32,7 @@ Add to your `~/.claude/settings.json`:
 
 ### Community note on auto-compaction overrides
 
-Some recent Claude Code builds have community reports that `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` can only lower the compaction threshold, which means values below the default may compact earlier instead of later. If that happens in your setup, remove the override and rely on manual `/compact` plus ECC's `strategic-compact` guidance. See [Troubleshooting](./TROUBLESHOOTING.md).
+Some recent Claude Code builds have community reports that `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` can only lower the compaction threshold, which means values below the default may compact earlier instead of later. If that happens in your setup, remove the override and rely on manual `/compact` plus silas-tools's `strategic-compact` guidance. See [Troubleshooting](./TROUBLESHOOTING.md).
 
 ### Toggling extended thinking
 
@@ -114,9 +114,9 @@ Tips:
 
 ---
 
-## Future: configure-ecc Integration
+## Future: configure-silas Integration
 
-The `configure-ecc` install wizard could offer to set these environment variables during setup, with explanations of the cost tradeoffs. This would help new users optimize from day one rather than discovering these settings after hitting limits.
+The `configure-silas` install wizard could offer to set these environment variables during setup, with explanations of the cost tradeoffs. This would help new users optimize from day one rather than discovering these settings after hitting limits.
 
 ---
 

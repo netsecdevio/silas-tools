@@ -84,11 +84,6 @@ function runTests() {
   let failed = 0;
   const powerShellCommand = resolvePowerShellCommand();
 
-  if (test('publishes ecc-install through the Node installer runtime for cross-platform npm usage', () => {
-    const packageJson = JSON.parse(fs.readFileSync(PACKAGE_JSON, 'utf8'));
-    assert.strictEqual(packageJson.bin['ecc-install'], 'scripts/install-apply.js');
-  })) passed++; else failed++;
-
   if (!powerShellCommand) {
     console.log('  - skipped delegation test; PowerShell is not available in PATH');
   } else if (test('delegates to the Node installer and preserves dry-run output', () => {

@@ -1,8 +1,8 @@
-# Everything Claude Code (ECC) — Agent Instructions
+# silas-tools — Agent Instructions
 
-This is a **production-ready AI coding plugin** providing 48 specialized agents, 183 skills, 79 commands, and automated hook workflows for software development.
+Claude Code plugin marketplace for the Silas project (Dynecon LLC), providing 48 specialized agents, 183+ skills, 79 commands and automated hook workflows. Forked from `silas-tools` (MIT) and curated for Silas use.
 
-**Version:** 1.10.0
+**Version:** 0.1.0
 
 ## Core Principles
 

@@ -29,7 +29,7 @@ const {
   compactSession
 } = require(path.join(__dirname, '..', '..', 'scripts', 'claw.js'));
 
-// Test helper — matches ECC's custom test pattern
+// Test helper — matches silas-tools's custom test pattern
 function test(name, fn) {
   try {
     fn();

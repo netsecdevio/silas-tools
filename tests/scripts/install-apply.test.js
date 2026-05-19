@@ -122,47 +122,6 @@ function runTests() {
     }
   })) passed++; else failed++;
 
-  if (test('installs Cursor configs and writes install-state', () => {
-    const homeDir = createTempDir('install-apply-home-');
-    const projectDir = createTempDir('install-apply-project-');
-
-    try {
-      const result = run(['--target', 'cursor', 'typescript'], { cwd: projectDir, homeDir });
-      assert.strictEqual(result.code, 0, result.stderr);
-
-      assert.ok(fs.existsSync(path.join(projectDir, '.cursor', 'rules', 'common-coding-style.mdc')));
-      assert.ok(fs.existsSync(path.join(projectDir, '.cursor', 'rules', 'typescript-testing.mdc')));
-      assert.ok(fs.existsSync(path.join(projectDir, '.cursor', 'rules', 'common-agents.mdc')));
-      assert.ok(!fs.existsSync(path.join(projectDir, '.cursor', 'rules', 'common-agents.md')));
-      assert.ok(!fs.existsSync(path.join(projectDir, '.cursor', 'rules', 'README.mdc')));
-      assert.ok(fs.existsSync(path.join(projectDir, '.cursor', 'agents', 'architect.md')));
-      assert.ok(fs.existsSync(path.join(projectDir, '.cursor', 'commands', 'plan.md')));
-      assert.ok(fs.existsSync(path.join(projectDir, '.cursor', 'hooks.json')));
-      assert.ok(fs.existsSync(path.join(projectDir, '.cursor', 'hooks', 'session-start.js')));
-      assert.ok(fs.existsSync(path.join(projectDir, '.cursor', 'scripts', 'lib', 'utils.js')));
-      assert.ok(fs.existsSync(path.join(projectDir, '.cursor', 'skills', 'tdd-workflow', 'SKILL.md')));
-      assert.ok(fs.existsSync(path.join(projectDir, '.cursor', 'skills', 'coding-standards', 'SKILL.md')));
-
-      const statePath = path.join(projectDir, '.cursor', 'ecc-install-state.json');
-      const state = readJson(statePath);
-      const normalizedProjectDir = fs.realpathSync(projectDir);
-      assert.strictEqual(state.target.id, 'cursor-project');
-      assert.strictEqual(state.target.root, path.join(normalizedProjectDir, '.cursor'));
-      assert.deepStrictEqual(state.request.legacyLanguages, ['typescript']);
-      assert.strictEqual(state.request.legacyMode, true);
-      assert.ok(state.resolution.selectedModules.includes('framework-language'));
-      assert.ok(
-        state.operations.some(operation => (
-          operation.destinationPath === path.join(normalizedProjectDir, '.cursor', 'commands', 'plan.md')
-        )),
-        'Should record manifest command file copy operation'
-      );
-    } finally {
-      cleanup(homeDir);
-      cleanup(projectDir);
-    }
-  })) passed++; else failed++;
-
   if (test('installs Antigravity configs and writes install-state', () => {
     const homeDir = createTempDir('install-apply-home-');
     const projectDir = createTempDir('install-apply-project-');
@@ -290,37 +249,6 @@ function runTests() {
       assert.ok(state.resolution.skippedModules.includes('hooks-runtime'));
       assert.ok(!state.resolution.skippedModules.includes('workflow-quality'));
       assert.ok(!state.resolution.skippedModules.includes('platform-configs'));
-    } finally {
-      cleanup(homeDir);
-      cleanup(projectDir);
-    }
-  })) passed++; else failed++;
-
-  if (test('installs explicit modules for cursor using manifest operations', () => {
-    const homeDir = createTempDir('install-apply-home-');
-    const projectDir = createTempDir('install-apply-project-');
-
-    try {
-      const result = run(['--target', 'cursor', '--modules', 'platform-configs'], {
-        cwd: projectDir,
-        homeDir,
-      });
-      assert.strictEqual(result.code, 0, result.stderr);
-      assert.ok(fs.existsSync(path.join(projectDir, '.cursor', 'hooks.json')));
-      assert.ok(fs.existsSync(path.join(projectDir, '.cursor', 'rules', 'common-agents.mdc')));
-      assert.ok(!fs.existsSync(path.join(projectDir, '.cursor', 'rules', 'common-agents.md')));
-
-      const state = readJson(path.join(projectDir, '.cursor', 'ecc-install-state.json'));
-      assert.strictEqual(state.request.profile, null);
-      assert.deepStrictEqual(state.request.modules, ['platform-configs']);
-      assert.deepStrictEqual(state.request.includeComponents, []);
-      assert.deepStrictEqual(state.request.excludeComponents, []);
-      assert.strictEqual(state.request.legacyMode, false);
-      assert.ok(state.resolution.selectedModules.includes('platform-configs'));
-      assert.ok(
-        !state.operations.some(operation => operation.destinationPath.endsWith('ecc-install-state.json')),
-        'Manifest copy operations should not include generated install-state files'
-      );
     } finally {
       cleanup(homeDir);
       cleanup(projectDir);

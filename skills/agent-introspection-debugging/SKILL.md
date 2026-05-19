@@ -1,7 +1,7 @@
 ---
 name: agent-introspection-debugging
 description: Structured self-debugging workflow for AI agent failures using capture, diagnosis, contained recovery, and introspection reports.
-origin: ECC
+origin: silas-tools
 ---
 
 # Agent Introspection Debugging
@@ -28,7 +28,7 @@ Activate this skill for:
 
 Do not use this skill as the primary source for:
 - feature verification after code changes; use `verification-loop`
-- framework-specific debugging when a narrower ECC skill already exists
+- framework-specific debugging when a narrower silas-tools skill already exists
 - runtime promises the current harness cannot enforce automatically
 
 ## Four-Phase Loop
@@ -135,7 +135,7 @@ Good pattern:
 - run one direct check
 - change the plan only if the check supports it
 
-## Integration with ECC
+## Integration with silas-tools
 
 - Use `verification-loop` after recovery if code was changed.
 - Use `continuous-learning-v2` when the failure pattern is worth turning into an instinct or later skill.

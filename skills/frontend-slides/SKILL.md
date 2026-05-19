@@ -1,7 +1,7 @@
 ---
 name: frontend-slides
 description: Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a talk/pitch. Helps non-designers discover their aesthetic through visual exploration rather than abstract choices.
-origin: ECC
+origin: silas-tools
 ---
 
 # Frontend Slides
@@ -168,7 +168,7 @@ Use these maxima unless the user explicitly asks for denser slides and readabili
 - fixed-height content boxes that break on short screens
 - invalid negated CSS functions like `-clamp(...)`
 
-## Related ECC Skills
+## Related silas-tools Skills
 
 - `frontend-patterns` for component and interaction patterns around the deck
 - `liquid-glass-design` when a presentation intentionally borrows Apple glass aesthetics

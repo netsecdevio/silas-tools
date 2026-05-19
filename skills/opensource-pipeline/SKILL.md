@@ -1,7 +1,7 @@
 ---
 name: opensource-pipeline
 description: "Open-source pipeline: fork, sanitize, and package private projects for safe public release. Chains 3 agents (forker, sanitizer, packager). Triggers: '/opensource', 'open source this', 'make this public', 'prepare for open source'."
-origin: ECC
+origin: silas-tools
 ---
 
 # Open-Source Pipeline Skill

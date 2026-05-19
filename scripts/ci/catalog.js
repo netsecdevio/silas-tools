@@ -555,16 +555,19 @@ const DOCUMENT_SPECS = [
     filePath: README_ZH_CN_PATH,
     parseExpectations: parseZhRootReadmeExpectations,
     syncContent: syncZhRootReadme,
+    optional: true,
   },
   {
     filePath: DOCS_ZH_CN_README_PATH,
     parseExpectations: parseZhDocsReadmeExpectations,
     syncContent: syncZhDocsReadme,
+    optional: true,
   },
   {
     filePath: DOCS_ZH_CN_AGENTS_PATH,
     parseExpectations: parseZhAgentsDocExpectations,
     syncContent: syncZhAgents,
+    optional: true,
   },
 ];
 
@@ -613,6 +616,7 @@ function main() {
 
   if (WRITE_MODE) {
     for (const spec of DOCUMENT_SPECS) {
+      if (spec.optional && !fs.existsSync(spec.filePath)) continue;
       const currentContent = readFileOrThrow(spec.filePath);
       const nextContent = spec.syncContent(currentContent, catalog);
       if (nextContent !== currentContent) {
@@ -621,9 +625,10 @@ function main() {
     }
   }
 
-  const expectations = DOCUMENT_SPECS.flatMap(spec => (
-    spec.parseExpectations(readFileOrThrow(spec.filePath))
-  ));
+  const expectations = DOCUMENT_SPECS.flatMap(spec => {
+    if (spec.optional && !fs.existsSync(spec.filePath)) return [];
+    return spec.parseExpectations(readFileOrThrow(spec.filePath));
+  });
   const checks = evaluateExpectations(catalog, expectations);
   const result = { catalog, checks };
 

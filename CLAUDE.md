@@ -1,72 +1,57 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code working in `silas-tools` (Dynecon LLC, project Silas).
 
 ## Project Overview
 
-This is a **Claude Code plugin** - a collection of production-ready agents, skills, hooks, commands, rules, and MCP configurations. The project provides battle-tested workflows for software development using Claude Code.
+`silas-tools` is the Silas project's Claude Code plugin marketplace. It bundles two plugins:
+
+- **`silas-tools`** — agents, skills, hooks, commands, rules, MCP configs (forked from `silas-tools`, scrubbed for Silas use).
+- **`rigor`** — rigorous SDLC workflow with producer-critic validation patterns (under `plugins/rigor/`).
+
+This repo is a **plugin marketplace**, not a runtime. Add it via `claude plugin marketplace add github.com/netsecdevio/silas-tools`.
+
+## Silas Branding & Commit Rules
+
+This repo follows the Silas governance rules in `silas-workspace/CLAUDE.md` and `silas-workspace/GOVERNANCE.md`:
+
+- **Commit author + committer email**: `7632431+DDinVA@users.noreply.github.com` (mandatory — pushes rejected with `GH007` otherwise).
+- **No Claude contributor references** in commits (no `Co-Authored-By: Claude`, no "Generated with Claude Code" footers).
+- **No Adobe-confidential content** — see `silas-workspace/GOVERNANCE.md` §10 PR checklist.
+- **Branch naming**: `<type>/<ticket-id>-<short-desc>` where type ∈ `fix | feat | chore | ci | docs | hotfix`.
+- **Squash merges preferred**.
+- **Owner**: Dynecon LLC. GitHub org: `netsecdevio`.
 
 ## Running Tests
 
 ```bash
-# Run all tests
-node tests/run-all.js
-
-# Run individual test files
-node tests/lib/utils.test.js
-node tests/lib/package-manager.test.js
+node tests/run-all.js                 # full suite
+node tests/lib/utils.test.js          # individual
 node tests/hooks/hooks.test.js
 ```
 
 ## Architecture
 
-The project is organized into several core components:
-
-- **agents/** - Specialized subagents for delegation (planner, code-reviewer, tdd-guide, etc.)
-- **skills/** - Workflow definitions and domain knowledge (coding standards, patterns, testing)
-- **commands/** - Slash commands invoked by users (/tdd, /plan, /e2e, etc.)
-- **hooks/** - Trigger-based automations (session persistence, pre/post-tool hooks)
-- **rules/** - Always-follow guidelines (security, coding style, testing requirements)
-- **mcp-configs/** - MCP server configurations for external integrations
-- **scripts/** - Cross-platform Node.js utilities for hooks and setup
-- **tests/** - Test suite for scripts and utilities
-
-## Key Commands
-
-- `/tdd` - Test-driven development workflow
-- `/plan` - Implementation planning
-- `/e2e` - Generate and run E2E tests
-- `/code-review` - Quality review
-- `/build-fix` - Fix build errors
-- `/learn` - Extract patterns from sessions
-- `/skill-create` - Generate skills from git history
+- `agents/` — subagents (planner, code-reviewer, tdd-guide, etc.)
+- `skills/` — workflow + domain knowledge skills
+- `commands/` — slash commands
+- `hooks/` — trigger-based automations
+- `rules/` — always-follow guidelines
+- `mcp-configs/` — MCP server configs
+- `scripts/` — Node.js utilities (hooks, setup)
+- `tests/` — test suite (mirrors `scripts/`)
+- `plugins/rigor/` — bundled second plugin
+- `.claude-plugin/marketplace.json` — marketplace manifest
 
 ## Development Notes
 
-- Package manager detection: npm, pnpm, yarn, bun (configurable via `CLAUDE_PACKAGE_MANAGER` env var or project config)
-- Cross-platform: Windows, macOS, Linux support via Node.js scripts
-- Agent format: Markdown with YAML frontmatter (name, description, tools, model)
-- Skill format: Markdown with clear sections for when to use, how it works, examples
-- Skill placement: Curated in skills/; generated/imported under ~/.claude/skills/. See docs/SKILL-PLACEMENT-POLICY.md
-- Hook format: JSON with matcher conditions and command/notification hooks
+- Node >= 18, CommonJS only (no ESM unless `.mjs`)
+- Package manager: pnpm (Silas standard)
+- Agent format: Markdown + YAML frontmatter (`name`, `description`, `tools`, `model`)
+- Skill format: Markdown — sections for When to Use, How It Works, Examples
+- Hook format: JSON with `matcher` + `hooks` array
+- File naming: lowercase-with-hyphens
 
 ## Contributing
 
-Follow the formats in CONTRIBUTING.md:
-- Agents: Markdown with frontmatter (name, description, tools, model)
-- Skills: Clear sections (When to Use, How It Works, Examples)
-- Commands: Markdown with description frontmatter
-- Hooks: JSON with matcher and hooks array
-
-File naming: lowercase with hyphens (e.g., `python-reviewer.md`, `tdd-workflow.md`)
-
-## Skills
-
-Use the following skills when working on related files:
-
-| File(s) | Skill |
-|---------|-------|
-| `README.md` | `/readme` |
-| `.github/workflows/*.yml` | `/ci-workflow` |
-
-When spawning subagents, always pass conventions from the respective skill into the agent's prompt.
+See `CONTRIBUTING.md` for formats. Run `node tests/run-all.js` and `npx markdownlint-cli '**/*.md' --ignore node_modules` before committing.

@@ -1,40 +1,40 @@
 ---
-name: configure-ecc
-description: Interactive installer for Everything Claude Code — guides users through selecting and installing skills and rules to user-level or project-level directories, verifies paths, and optionally optimizes installed files.
-origin: ECC
+name: configure-silas
+description: Interactive installer for silas-tools — guides users through selecting and installing skills and rules to user-level or project-level directories, verifies paths, and optionally optimizes installed files.
+origin: silas-tools
 ---
 
-# Configure Everything Claude Code (ECC)
+# Configure silas-tools
 
-An interactive, step-by-step installation wizard for the Everything Claude Code project. Uses `AskUserQuestion` to guide users through selective installation of skills and rules, then verifies correctness and offers optimization.
+An interactive, step-by-step installation wizard for the silas-tools project. Uses `AskUserQuestion` to guide users through selective installation of skills and rules, then verifies correctness and offers optimization.
 
 ## When to Activate
 
 - User says "configure ecc", "install ecc", "setup everything claude code", or similar
 - User wants to selectively install skills or rules from this project
-- User wants to verify or fix an existing ECC installation
+- User wants to verify or fix an existing silas-tools installation
 - User wants to optimize installed skills or rules for their project
 
 ## Prerequisites
 
 This skill must be accessible to Claude Code before activation. Two ways to bootstrap:
-1. **Via Plugin**: `/plugin install everything-claude-code` — the plugin loads this skill automatically
-2. **Manual**: Copy only this skill to `~/.claude/skills/configure-ecc/SKILL.md`, then activate by saying "configure ecc"
+1. **Via Plugin**: `/plugin install silas-tools` — the plugin loads this skill automatically
+2. **Manual**: Copy only this skill to `~/.claude/skills/configure-silas/SKILL.md`, then activate by saying "configure ecc"
 
 ---
 
-## Step 0: Clone ECC Repository
+## Step 0: Clone silas-tools Repository
 
-Before any installation, clone the latest ECC source to `/tmp`:
+Before any installation, clone the latest silas-tools source to `/tmp`:
 
 ```bash
-rm -rf /tmp/everything-claude-code
-git clone https://github.com/affaan-m/everything-claude-code.git /tmp/everything-claude-code
+rm -rf /tmp/silas-tools
+git clone https://github.com/netsecdevio/silas-tools.git /tmp/silas-tools
 ```
 
-Set `ECC_ROOT=/tmp/everything-claude-code` as the source for all subsequent copy operations.
+Set `ECC_ROOT=/tmp/silas-tools` as the source for all subsequent copy operations.
 
-If the clone fails (network issues, etc.), use `AskUserQuestion` to ask the user to provide a local path to an existing ECC clone.
+If the clone fails (network issues, etc.), use `AskUserQuestion` to ask the user to provide a local path to an existing silas-tools clone.
 
 ---
 
@@ -43,7 +43,7 @@ If the clone fails (network issues, etc.), use `AskUserQuestion` to ask the user
 Use `AskUserQuestion` to ask the user where to install:
 
 ```
-Question: "Where should ECC components be installed?"
+Question: "Where should silas-tools components be installed?"
 Options:
   - "User-level (~/.claude/)" — "Applies to all your Claude Code projects"
   - "Project-level (.claude/)" — "Applies only to the current project"
@@ -312,7 +312,7 @@ Options:
    - Security requirements
 3. Edit the rule files in-place at the installation target
 
-**Critical**: Only modify files in the installation target (`$TARGET/`), NEVER modify files in the source ECC repository (`$ECC_ROOT/`).
+**Critical**: Only modify files in the installation target (`$TARGET/`), NEVER modify files in the source silas-tools repository (`$ECC_ROOT/`).
 
 ---
 
@@ -321,13 +321,13 @@ Options:
 Clean up the cloned repository from `/tmp`:
 
 ```bash
-rm -rf /tmp/everything-claude-code
+rm -rf /tmp/silas-tools
 ```
 
 Then print a summary report:
 
 ```
-## ECC Installation Complete
+## silas-tools Installation Complete
 
 ### Installation Target
 - Level: [user-level / project-level / both]

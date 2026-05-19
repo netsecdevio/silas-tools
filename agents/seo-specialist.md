@@ -59,4 +59,4 @@ Fix: Exact change to make
 
 ## Reference
 
-Use `skills/seo` for the canonical ECC SEO workflow and implementation guidance.
+Use `skills/seo` for the canonical Silas SEO workflow and implementation guidance.

@@ -17,7 +17,7 @@
  *
  * How it works:
  *   1. Reads the raw JSON event from stdin (passed by Claude Code).
- *   2. Resolves the ECC plugin root directory (via CLAUDE_PLUGIN_ROOT env var
+ *   2. Resolves the silas-tools plugin root directory (via CLAUDE_PLUGIN_ROOT env var
  *      or a set of well-known fallback paths).
  *   3. Delegates to `scripts/hooks/run-with-flags.js` with the `session:start`
  *      event, which applies hook-profile gating and then runs session-start.js.
@@ -31,7 +31,7 @@ const path = require('path');
 const { spawnSync } = require('child_process');
 
 const CURRENT_PLUGIN_SLUG = 'ecc';
-const LEGACY_PLUGIN_SLUG = 'everything-claude-code';
+const LEGACY_PLUGIN_SLUG = 'silas-tools';
 const KNOWN_PLUGIN_PATHS = [
   [CURRENT_PLUGIN_SLUG],
   [`${CURRENT_PLUGIN_SLUG}@${CURRENT_PLUGIN_SLUG}`],
@@ -49,7 +49,7 @@ const raw = fs.readFileSync(0, 'utf8');
 const rel = path.join('scripts', 'hooks', 'run-with-flags.js');
 
 /**
- * Returns true when `candidate` looks like a valid ECC plugin root, i.e. the
+ * Returns true when `candidate` looks like a valid silas-tools plugin root, i.e. the
  * run-with-flags.js runner exists inside it.
  *
  * @param {unknown} candidate
@@ -61,11 +61,11 @@ function hasRunnerRoot(candidate) {
 }
 
 /**
- * Resolves the ECC plugin root using the following priority order:
+ * Resolves the silas-tools plugin root using the following priority order:
  *   1. CLAUDE_PLUGIN_ROOT environment variable
  *   2. ~/.claude (direct install)
  *   3. Several well-known plugin sub-paths under ~/.claude/plugins/ (current + legacy)
- *   4. Versioned cache directories under ~/.claude/plugins/cache/{ecc,everything-claude-code}/
+ *   4. Versioned cache directories under ~/.claude/plugins/cache/{ecc,silas-tools}/
  *   5. Falls back to ~/.claude if nothing else matches
  *
  * @returns {string}
@@ -93,7 +93,7 @@ function resolvePluginRoot() {
     }
   }
 
-  // Walk versioned cache: ~/.claude/plugins/cache/{ecc,everything-claude-code}/<org>/<version>/
+  // Walk versioned cache: ~/.claude/plugins/cache/{ecc,silas-tools}/<org>/<version>/
   try {
     for (const slug of CACHE_PLUGIN_SLUGS) {
       const cacheBase = path.join(claudeDir, 'plugins', 'cache', slug);
@@ -156,6 +156,6 @@ if (fs.existsSync(script)) {
 }
 
 process.stderr.write(
-  '[SessionStart] WARNING: could not resolve ECC plugin root; skipping session-start hook\n'
+  '[SessionStart] WARNING: could not resolve silas-tools plugin root; skipping session-start hook\n'
 );
 process.stdout.write(raw);

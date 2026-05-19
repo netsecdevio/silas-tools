@@ -1,7 +1,7 @@
 ---
 name: terminal-ops
-description: Evidence-first repo execution workflow for ECC. Use when the user wants a command run, a repo checked, a CI failure debugged, or a narrow fix pushed with exact proof of what was executed and verified.
-origin: ECC
+description: Evidence-first repo execution workflow for silas-tools. Use when the user wants a command run, a repo checked, a CI failure debugged, or a narrow fix pushed with exact proof of what was executed and verified.
+origin: silas-tools
 ---
 
 # Terminal Ops
@@ -12,7 +12,7 @@ This skill is intentionally narrower than general coding guidance. It is an oper
 
 ## Skill Stack
 
-Pull these ECC-native skills into the workflow when relevant:
+Pull these silas-tools-native skills into the workflow when relevant:
 
 - `verification-loop` for exact proving steps after changes
 - `tdd-workflow` when the right fix needs regression coverage

@@ -136,10 +136,10 @@ function runTests() {
     }
   })) passed++; else failed++;
 
-  if (test('finds exact legacy plugin install at ~/.claude/plugins/everything-claude-code', () => {
+  if (test('finds exact legacy plugin install at ~/.claude/plugins/silas-tools', () => {
     const homeDir = createTempDir();
     try {
-      const expected = setupLegacyPluginInstall(homeDir, ['everything-claude-code']);
+      const expected = setupLegacyPluginInstall(homeDir, ['silas-tools']);
       const result = resolveEccRoot({ envRoot: '', homeDir });
       assert.strictEqual(result, expected);
     } finally {
@@ -147,10 +147,10 @@ function runTests() {
     }
   })) passed++; else failed++;
 
-  if (test('finds exact legacy plugin install at ~/.claude/plugins/everything-claude-code@everything-claude-code', () => {
+  if (test('finds exact legacy plugin install at ~/.claude/plugins/silas-tools@silas-tools', () => {
     const homeDir = createTempDir();
     try {
-      const expected = setupLegacyPluginInstall(homeDir, ['everything-claude-code@everything-claude-code']);
+      const expected = setupLegacyPluginInstall(homeDir, ['silas-tools@silas-tools']);
       const result = resolveEccRoot({ envRoot: '', homeDir });
       assert.strictEqual(result, expected);
     } finally {
@@ -169,10 +169,10 @@ function runTests() {
     }
   })) passed++; else failed++;
 
-  if (test('finds marketplace legacy plugin install at ~/.claude/plugins/marketplace/everything-claude-code', () => {
+  if (test('finds marketplace legacy plugin install at ~/.claude/plugins/marketplace/silas-tools', () => {
     const homeDir = createTempDir();
     try {
-      const expected = setupLegacyPluginInstall(homeDir, ['marketplace', 'everything-claude-code']);
+      const expected = setupLegacyPluginInstall(homeDir, ['marketplace', 'silas-tools']);
       const result = resolveEccRoot({ envRoot: '', homeDir });
       assert.strictEqual(result, expected);
     } finally {
@@ -184,7 +184,7 @@ function runTests() {
     const homeDir = createTempDir();
     try {
       const expected = setupLegacyPluginInstall(homeDir, ['marketplace', 'ecc']);
-      setupPluginCache(homeDir, 'ecc', 'affaan-m', CURRENT_PACKAGE_VERSION);
+      setupPluginCache(homeDir, 'ecc', 'netsecdevio', CURRENT_PACKAGE_VERSION);
       const result = resolveEccRoot({ envRoot: '', homeDir });
       assert.strictEqual(result, expected);
     } finally {
@@ -196,7 +196,7 @@ function runTests() {
   if (test('discovers plugin root from cache directory', () => {
     const homeDir = createTempDir();
     try {
-      const expected = setupPluginCache(homeDir, 'ecc', 'affaan-m', CURRENT_PACKAGE_VERSION);
+      const expected = setupPluginCache(homeDir, 'ecc', 'netsecdevio', CURRENT_PACKAGE_VERSION);
       const result = resolveEccRoot({ envRoot: '', homeDir });
       assert.strictEqual(result, expected);
     } finally {
@@ -208,7 +208,7 @@ function runTests() {
     const homeDir = createTempDir();
     try {
       const claudeDir = setupStandardInstall(homeDir);
-      setupPluginCache(homeDir, 'ecc', 'affaan-m', CURRENT_PACKAGE_VERSION);
+      setupPluginCache(homeDir, 'ecc', 'netsecdevio', CURRENT_PACKAGE_VERSION);
       const result = resolveEccRoot({ envRoot: '', homeDir });
       assert.strictEqual(result, claudeDir,
         'Standard install should take precedence over plugin cache');
@@ -220,13 +220,13 @@ function runTests() {
   if (test('handles multiple versions in plugin cache', () => {
     const homeDir = createTempDir();
     try {
-      setupPluginCache(homeDir, 'everything-claude-code', 'legacy-org', '1.7.0');
-      const expected = setupPluginCache(homeDir, 'ecc', 'affaan-m', CURRENT_PACKAGE_VERSION);
+      setupPluginCache(homeDir, 'silas-tools', 'legacy-org', '1.7.0');
+      const expected = setupPluginCache(homeDir, 'ecc', 'netsecdevio', CURRENT_PACKAGE_VERSION);
       const result = resolveEccRoot({ envRoot: '', homeDir });
       // Should find one of them (either is valid)
       assert.ok(
         result === expected ||
-        result === path.join(homeDir, '.claude', 'plugins', 'cache', 'everything-claude-code', 'legacy-org', '1.7.0'),
+        result === path.join(homeDir, '.claude', 'plugins', 'cache', 'silas-tools', 'legacy-org', '1.7.0'),
         'Should resolve to a valid plugin cache directory'
       );
     } finally {
@@ -314,7 +314,7 @@ function runTests() {
   if (test('INLINE_RESOLVE discovers plugin cache when env var is unset', () => {
     const homeDir = createTempDir();
     try {
-      const expected = setupPluginCache(homeDir, 'ecc', 'affaan-m', CURRENT_PACKAGE_VERSION);
+      const expected = setupPluginCache(homeDir, 'ecc', 'netsecdevio', CURRENT_PACKAGE_VERSION);
       const { execFileSync } = require('child_process');
       const result = execFileSync('node', [
         '-e', `console.log(${INLINE_RESOLVE})`,

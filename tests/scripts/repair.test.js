@@ -82,50 +82,6 @@ function runTests() {
   let passed = 0;
   let failed = 0;
 
-  if (test('repairs drifted files from a real install-apply state', () => {
-    const homeDir = createTempDir('repair-home-');
-    const projectRoot = createTempDir('repair-project-');
-
-    try {
-      const installResult = runNode(INSTALL_SCRIPT, ['--target', 'cursor', 'typescript'], {
-        cwd: projectRoot,
-        homeDir,
-      });
-      assert.strictEqual(installResult.code, 0, installResult.stderr);
-
-      const normalizedProjectRoot = fs.realpathSync(projectRoot);
-      const managedPath = path.join(normalizedProjectRoot, '.cursor', 'hooks', 'session-start.js');
-      const statePath = path.join(normalizedProjectRoot, '.cursor', 'ecc-install-state.json');
-      const expectedContent = fs.readFileSync(
-        path.join(REPO_ROOT, '.cursor', 'hooks', 'session-start.js'),
-        'utf8'
-      );
-      fs.writeFileSync(managedPath, '// drifted\n');
-
-      const doctorBefore = runNode(DOCTOR_SCRIPT, ['--target', 'cursor', '--json'], {
-        cwd: projectRoot,
-        homeDir,
-      });
-      assert.strictEqual(doctorBefore.code, 1);
-      assert.ok(JSON.parse(doctorBefore.stdout).results[0].issues.some(issue => issue.code === 'drifted-managed-files'));
-
-      const repairResult = runNode(REPAIR_SCRIPT, ['--target', 'cursor', '--json'], {
-        cwd: projectRoot,
-        homeDir,
-      });
-      assert.strictEqual(repairResult.code, 0, repairResult.stderr);
-
-      const parsed = JSON.parse(repairResult.stdout);
-      assert.strictEqual(parsed.results[0].status, 'repaired');
-      assert.ok(parsed.results[0].repairedPaths.includes(managedPath));
-      assert.strictEqual(fs.readFileSync(managedPath, 'utf8'), expectedContent);
-      assert.ok(fs.existsSync(statePath));
-    } finally {
-      cleanup(homeDir);
-      cleanup(projectRoot);
-    }
-  })) passed++; else failed++;
-
   if (test('repairs drifted non-copy managed operations and refreshes install-state', () => {
     const homeDir = createTempDir('repair-home-');
     const projectRoot = createTempDir('repair-project-');

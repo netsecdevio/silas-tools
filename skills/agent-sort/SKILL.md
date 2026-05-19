@@ -1,18 +1,18 @@
 ---
 name: agent-sort
-description: Build an evidence-backed ECC install plan for a specific repo by sorting skills, commands, rules, hooks, and extras into DAILY vs LIBRARY buckets using parallel repo-aware review passes. Use when ECC should be trimmed to what a project actually needs instead of loading the full bundle.
-origin: ECC
+description: Build an evidence-backed silas-tools install plan for a specific repo by sorting skills, commands, rules, hooks, and extras into DAILY vs LIBRARY buckets using parallel repo-aware review passes. Use when silas-tools should be trimmed to what a project actually needs instead of loading the full bundle.
+origin: silas-tools
 ---
 
 # Agent Sort
 
-Use this skill when a repo needs a project-specific ECC surface instead of the default full install.
+Use this skill when a repo needs a project-specific silas-tools surface instead of the default full install.
 
-The goal is not to guess what "feels useful." The goal is to classify ECC components with evidence from the actual codebase.
+The goal is not to guess what "feels useful." The goal is to classify silas-tools components with evidence from the actual codebase.
 
 ## When to Use
 
-- A project only needs a subset of ECC and full installs are too noisy
+- A project only needs a subset of silas-tools and full installs are too noisy
 - The repo stack is clear, but nobody wants to hand-curate skills one by one
 - A team wants a repeatable install decision backed by grep evidence instead of opinion
 - You need to separate always-loaded daily workflow surfaces from searchable library/reference surfaces
@@ -24,7 +24,7 @@ The goal is not to guess what "feels useful." The goal is to classify ECC compon
 - Every DAILY decision must cite concrete repo evidence
 - LIBRARY does not mean "delete"; it means "keep accessible without loading by default"
 - Do not install hooks, rules, or scripts that the current repo cannot use
-- Prefer ECC-native surfaces; do not introduce a second install system
+- Prefer silas-tools-native surfaces; do not introduce a second install system
 
 ## Outputs
 
@@ -183,7 +183,7 @@ Return a compact report with:
 
 If the next step is interactive installation or repair, hand off to:
 
-- `configure-ecc`
+- `configure-silas`
 
 If the next step is overlap cleanup or catalog review, hand off to:
 

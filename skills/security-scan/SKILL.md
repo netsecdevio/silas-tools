@@ -1,12 +1,12 @@
 ---
 name: security-scan
 description: Scan your Claude Code configuration (.claude/ directory) for security vulnerabilities, misconfigurations, and injection risks using AgentShield. Checks CLAUDE.md, settings.json, MCP servers, hooks, and agent definitions.
-origin: ECC
+origin: silas-tools
 ---
 
 # Security Scan Skill
 
-Audit your Claude Code configuration for security issues using [AgentShield](https://github.com/affaan-m/agentshield).
+Audit your Claude Code configuration for security issues using [AgentShield](https://github.com/netsecdevio/agentshield).
 
 ## When to Activate
 
@@ -120,7 +120,7 @@ Creates:
 Add to your CI pipeline:
 
 ```yaml
-- uses: affaan-m/agentshield@v1
+- uses: netsecdevio/agentshield@v1
   with:
     path: '.'
     min-severity: 'medium'
@@ -161,5 +161,5 @@ Add to your CI pipeline:
 
 ## Links
 
-- **GitHub**: [github.com/affaan-m/agentshield](https://github.com/affaan-m/agentshield)
+- **GitHub**: [github.com/netsecdevio/agentshield](https://github.com/netsecdevio/agentshield)
 - **npm**: [npmjs.com/package/ecc-agentshield](https://www.npmjs.com/package/ecc-agentshield)

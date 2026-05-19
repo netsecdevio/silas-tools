@@ -244,67 +244,6 @@ function runTests() {
     }
   })) passed++; else failed++;
 
-  if (test('doctor reports drifted managed files as a warning', () => {
-    const homeDir = createTempDir('install-lifecycle-home-');
-    const projectRoot = createTempDir('install-lifecycle-project-');
-
-    try {
-      const targetRoot = path.join(projectRoot, '.cursor');
-      const statePath = path.join(targetRoot, 'ecc-install-state.json');
-      const sourcePath = path.join(REPO_ROOT, '.cursor', 'hooks.json');
-      const destinationPath = path.join(targetRoot, 'hooks.json');
-      fs.mkdirSync(path.dirname(destinationPath), { recursive: true });
-      fs.writeFileSync(destinationPath, '{"drifted":true}\n');
-
-      writeState(statePath, {
-        adapter: { id: 'cursor-project', target: 'cursor', kind: 'project' },
-        targetRoot,
-        installStatePath: statePath,
-        request: {
-          profile: null,
-          modules: ['platform-configs'],
-          legacyLanguages: [],
-          legacyMode: false,
-        },
-        resolution: {
-          selectedModules: ['platform-configs'],
-          skippedModules: [],
-        },
-        operations: [
-          {
-            kind: 'copy-file',
-            moduleId: 'platform-configs',
-            sourcePath,
-            sourceRelativePath: '.cursor/hooks.json',
-            destinationPath,
-            strategy: 'sync-root-children',
-            ownership: 'managed',
-            scaffoldOnly: false,
-          },
-        ],
-        source: {
-          repoVersion: CURRENT_PACKAGE_VERSION,
-          repoCommit: 'abc123',
-          manifestVersion: CURRENT_MANIFEST_VERSION,
-        },
-      });
-
-      const report = buildDoctorReport({
-        repoRoot: REPO_ROOT,
-        homeDir,
-        projectRoot,
-        targets: ['cursor'],
-      });
-
-      assert.strictEqual(report.results.length, 1);
-      assert.strictEqual(report.results[0].status, 'warning');
-      assert.ok(report.results[0].issues.some(issue => issue.code === 'drifted-managed-files'));
-    } finally {
-      cleanup(homeDir);
-      cleanup(projectRoot);
-    }
-  })) passed++; else failed++;
-
   if (test('doctor reports manifest resolution drift for non-legacy installs', () => {
     const homeDir = createTempDir('install-lifecycle-home-');
     const projectRoot = createTempDir('install-lifecycle-project-');

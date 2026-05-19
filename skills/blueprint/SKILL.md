@@ -72,20 +72,20 @@ Produces a plan with parallel steps where possible (e.g., "implement Anthropic p
 
 ## Installation
 
-This skill ships with Everything Claude Code. No separate installation is needed when ECC is installed.
+This skill ships with silas-tools. No separate installation is needed when silas-tools is installed.
 
-### Full ECC install
+### Full silas-tools install
 
-If you are working from the ECC repository checkout, verify the skill is present with:
+If you are working from the silas-tools repository checkout, verify the skill is present with:
 
 ```bash
 test -f skills/blueprint/SKILL.md
 ```
 
-To update later, review the ECC diff before updating:
+To update later, review the silas-tools diff before updating:
 
 ```bash
-cd /path/to/everything-claude-code
+cd /path/to/silas-tools
 git fetch origin main
 git log --oneline HEAD..origin/main       # review new commits before updating
 git checkout <reviewed-full-sha>          # pin to a specific reviewed commit
@@ -93,7 +93,7 @@ git checkout <reviewed-full-sha>          # pin to a specific reviewed commit
 
 ### Vendored standalone install
 
-If you are vendoring only this skill outside the full ECC install, copy the reviewed file from the ECC repository into `~/.claude/skills/blueprint/SKILL.md`. Vendored copies do not have a git remote, so update them by re-copying the file from a reviewed ECC commit rather than running `git pull`.
+If you are vendoring only this skill outside the full silas-tools install, copy the reviewed file from the silas-tools repository into `~/.claude/skills/blueprint/SKILL.md`. Vendored copies do not have a git remote, so update them by re-copying the file from a reviewed silas-tools commit rather than running `git pull`.
 
 ## Requirements
 

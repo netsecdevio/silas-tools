@@ -1,0 +1,21 @@
+{
+  "name": "rigor",
+  "version": "0.17.0",
+  "description": "Rigorous SDLC workflow with producer-critic validation patterns for high-quality software development",
+  "author": {
+    "name": "zaphar"
+  },
+  "homepage": "https://dev.zaphar.net/zaphar/claude-zaphar",
+  "repository": "https://dev.zaphar.net/zaphar/claude-zaphar.git",
+  "license": "MIT",
+  "keywords": [
+    "sdlc",
+    "workflow",
+    "requirements",
+    "architecture",
+    "quality",
+    "validation",
+    "producer-critic",
+    "rigorous-development"
+  ]
+}

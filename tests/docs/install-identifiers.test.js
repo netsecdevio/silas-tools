@@ -23,10 +23,6 @@ function test(name, fn) {
 
 const publicInstallDocs = [
   'README.md',
-  'README.zh-CN.md',
-  'docs/pt-BR/README.md',
-  'docs/ja-JP/skills/configure-ecc/SKILL.md',
-  'docs/zh-CN/skills/configure-ecc/SKILL.md',
 ];
 
 console.log('\n=== Testing public install identifiers ===\n');
@@ -39,7 +35,7 @@ for (const relativePath of publicInstallDocs) {
   });
 
   test(`${relativePath} documents the canonical marketplace plugin identifier`, () => {
-    assert.ok(content.includes('everything-claude-code@everything-claude-code'));
+    assert.ok(content.includes('silas-tools@silas-tools'));
   });
 }
 

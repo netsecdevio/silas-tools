@@ -282,7 +282,7 @@ pytest -n auto
 pytest --lf
 ```
 
-## ECC Workflow
+## silas-tools Workflow
 
 ```bash
 # Planning

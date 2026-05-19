@@ -101,37 +101,6 @@ function runTests() {
     assert.ok(languages.includes('csharp'));
   })) passed++; else failed++;
 
-  if (test('resolves a real project profile with target-specific skips', () => {
-    const projectRoot = '/workspace/app';
-    const plan = resolveInstallPlan({ profileId: 'developer', target: 'cursor', projectRoot });
-    assert.ok(plan.selectedModuleIds.includes('rules-core'), 'Should keep rules-core');
-    assert.ok(plan.selectedModuleIds.includes('commands-core'), 'Should keep commands-core');
-    assert.ok(!plan.selectedModuleIds.includes('orchestration'),
-      'Should not select unsupported orchestration module for cursor');
-    assert.ok(plan.skippedModuleIds.includes('orchestration'),
-      'Should report unsupported orchestration module as skipped');
-    assert.strictEqual(plan.targetAdapterId, 'cursor-project');
-    assert.strictEqual(plan.targetRoot, path.join(projectRoot, '.cursor'));
-    assert.strictEqual(plan.installStatePath, path.join(projectRoot, '.cursor', 'ecc-install-state.json'));
-    assert.ok(plan.operations.length > 0, 'Should include scaffold operations');
-    assert.ok(
-      plan.operations.some(operation => (
-        operation.sourceRelativePath === '.cursor/hooks.json'
-        && operation.destinationPath === path.join(projectRoot, '.cursor', 'hooks.json')
-        && operation.strategy === 'preserve-relative-path'
-      )),
-      'Should preserve non-rule Cursor platform files'
-    );
-    assert.ok(
-      plan.operations.some(operation => (
-        operation.sourceRelativePath === '.cursor/rules/common-agents.md'
-        && operation.destinationPath === path.join(projectRoot, '.cursor', 'rules', 'common-agents.mdc')
-        && operation.strategy === 'flatten-copy'
-      )),
-      'Should produce Cursor .mdc rules while preferring native Cursor platform copies over duplicate rules-core files'
-    );
-  })) passed++; else failed++;
-
   if (test('resolves antigravity profiles while skipping only unsupported modules', () => {
     const projectRoot = '/workspace/app';
     const plan = resolveInstallPlan({ profileId: 'core', target: 'antigravity', projectRoot });

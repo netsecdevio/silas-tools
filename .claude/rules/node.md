@@ -1,6 +1,6 @@
-# Node.js Rules for everything-claude-code
+# Node.js Rules for silas-tools
 
-> Project-specific rules for the ECC codebase. Extends common rules.
+> Project-specific rules for the silas-tools codebase. Extends common rules.
 
 ## Stack
 

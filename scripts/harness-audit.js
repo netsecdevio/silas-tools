@@ -171,7 +171,7 @@ function hasFileWithExtension(rootDir, relativeDir, extensions) {
 
 function detectTargetMode(rootDir) {
   const packageJson = safeParseJson(safeRead(rootDir, 'package.json'));
-  if (packageJson?.name === 'everything-claude-code') {
+  if (packageJson?.name === 'silas-tools') {
     return 'repo';
   }
 
@@ -192,8 +192,8 @@ function findPluginInstall(rootDir) {
   const pluginDirs = [
     'ecc',
     'ecc@ecc',
-    'everything-claude-code',
-    'everything-claude-code@everything-claude-code',
+    'silas-tools',
+    'silas-tools@silas-tools',
   ];
   const candidateRoots = [
     path.join(rootDir, '.claude', 'plugins'),
@@ -493,10 +493,10 @@ function getConsumerChecks(rootDir) {
       category: 'Tool Coverage',
       points: 4,
       scopes: ['repo'],
-      path: '~/.claude/plugins/ecc/ (legacy everything-claude-code paths also supported)',
-      description: 'Everything Claude Code is installed for the active user or project',
+      path: '~/.claude/plugins/ecc/ (legacy silas-tools paths also supported)',
+      description: 'silas-tools is installed for the active user or project',
       pass: Boolean(pluginInstall),
-      fix: 'Install the ECC plugin for this user or project before auditing project-specific harness quality.',
+      fix: 'Install the silas-tools plugin for this user or project before auditing project-specific harness quality.',
     },
     {
       id: 'consumer-project-overrides',

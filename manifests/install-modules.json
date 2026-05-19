@@ -24,7 +24,6 @@
       "kind": "agents",
       "description": "Agent definitions and project-level agent guidance.",
       "paths": [
-        ".agents",
         "agents",
         "AGENTS.md"
       ],
@@ -85,10 +84,6 @@
       "description": "Baseline platform configs, package-manager setup, and MCP catalog.",
       "paths": [
         ".claude-plugin",
-        ".codex",
-        ".cursor",
-        ".gemini",
-        ".opencode",
         "mcp-configs",
         "scripts/setup-package-manager.js"
       ],
@@ -249,8 +244,7 @@
         "skills/security-scan",
         "skills/security-bounty-hunter",
         "skills/springboot-security",
-        "skills/evm-token-decimals",
-        "the-security-guide.md"
+        "skills/evm-token-decimals"
       ],
       "targets": [
         "claude",

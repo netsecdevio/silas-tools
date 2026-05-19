@@ -443,16 +443,16 @@ function runTests() {
     cleanupTestDir(testDir);
   })) passed++; else failed++;
 
-  if (test('fails when a tracked catalog document is missing', () => {
+  if (test('fails when a required catalog document is missing', () => {
     const testDir = createTestDir();
     const {
       readmePath,
       agentsPath,
       zhRootReadmePath,
       zhDocsReadmePath,
+      zhAgentsPath,
     } = writeCatalogFixture(testDir);
-    const missingZhAgentsPath = path.join(testDir, 'docs', 'zh-CN', 'AGENTS.md');
-    fs.rmSync(missingZhAgentsPath);
+    fs.rmSync(agentsPath);
 
     const result = runCatalogValidator({
       ROOT: testDir,
@@ -460,13 +460,13 @@ function runTests() {
       AGENTS_PATH: agentsPath,
       README_ZH_CN_PATH: zhRootReadmePath,
       DOCS_ZH_CN_README_PATH: zhDocsReadmePath,
-      DOCS_ZH_CN_AGENTS_PATH: missingZhAgentsPath,
+      DOCS_ZH_CN_AGENTS_PATH: zhAgentsPath,
     });
 
-    assert.strictEqual(result.code, 1, 'Should fail when a tracked doc is missing');
+    assert.strictEqual(result.code, 1, 'Should fail when a required doc is missing');
     assert.ok(
       (result.stdout + result.stderr).includes('Failed to read AGENTS.md'),
-      'Should mention the missing tracked document'
+      'Should mention the missing required document'
     );
     cleanupTestDir(testDir);
   })) passed++; else failed++;

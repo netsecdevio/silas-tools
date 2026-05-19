@@ -4,7 +4,7 @@
  *
  * This stays self-contained inside ECC. It does not call remote models or
  * install packages. The goal is to catch obviously generic UI drift and keep
- * frontend edits aligned with ECC's stronger design standards.
+ * frontend edits aligned with silas-tools's stronger design standards.
  */
 
 'use strict';

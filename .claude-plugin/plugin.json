@@ -1,13 +1,13 @@
 {
-  "name": "everything-claude-code",
-  "version": "1.10.0",
-  "description": "Battle-tested Claude Code plugin for engineering teams — 38 agents, 156 skills, 72 legacy command shims, production-ready hooks, and selective install workflows evolved through continuous real-world use",
+  "name": "silas-tools",
+  "version": "0.1.0",
+  "description": "Silas project Claude Code plugin — agents, skills, hooks, commands, rules, and MCP configs for the Dynecon LLC engineering workflow",
   "author": {
-    "name": "Affaan Mustafa",
-    "url": "https://x.com/affaanmustafa"
+    "name": "Dynecon LLC",
+    "url": "https://github.com/netsecdevio"
   },
-  "homepage": "https://ecc.tools",
-  "repository": "https://github.com/affaan-m/everything-claude-code",
+  "homepage": "https://github.com/netsecdevio/silas-tools",
+  "repository": "https://github.com/netsecdevio/silas-tools",
   "license": "MIT",
   "keywords": [
     "claude-code",

@@ -1,7 +1,7 @@
 ---
 name: autonomous-agent-harness
 description: Transform Claude Code into a fully autonomous agent system with persistent memory, scheduled operations, computer use, and task queuing. Replaces standalone agent frameworks (Hermes, AutoGPT) by leveraging Claude Code's native crons, dispatch, MCP tools, and memory. Use when the user wants continuous autonomous operation, scheduled tasks, or a self-directing agent loop.
-origin: ECC
+origin: silas-tools
 ---
 
 # Autonomous Agent Harness
@@ -31,7 +31,7 @@ Turn Claude Code into a persistent, self-directing agent system using only nativ
 │       │              │             │                │        │
 │       ▼              ▼             ▼                ▼        │
 │  ┌──────────────────────────────────────────────────────┐    │
-│  │              ECC Skill + Agent Layer                  │    │
+│  │              silas-tools Skill + Agent Layer                  │    │
 │  │                                                      │    │
 │  │  skills/     agents/     commands/     hooks/        │    │
 │  └──────────────────────────────────────────────────────┘    │
@@ -87,7 +87,7 @@ Use Claude Code's scheduled tasks to create recurring agent operations.
 mcp__scheduled-tasks__create_scheduled_task({
   name: "daily-pr-review",
   schedule: "0 9 * * 1-5",  # 9 AM weekdays
-  prompt: "Review all open PRs in affaan-m/everything-claude-code. For each: check CI status, review changes, flag issues. Post summary to memory.",
+  prompt: "Review all open PRs in netsecdevio/silas-tools. For each: check CI status, review changes, flag issues. Post summary to memory.",
   project_dir: "/path/to/repo"
 })
 
@@ -167,14 +167,14 @@ description: Persistent task queue for autonomous operation
 
 ## Replacing Hermes
 
-| Hermes Component | ECC Equivalent | How |
+| Hermes Component | silas-tools Equivalent | How |
 |------------------|---------------|-----|
 | Gateway/Router | Claude Code dispatch + crons | Scheduled tasks trigger agent sessions |
 | Memory System | Claude memory + MCP memory server | Built-in persistence + knowledge graph |
 | Tool Registry | MCP servers | Dynamically loaded tool providers |
-| Orchestration | ECC skills + agents | Skill definitions direct agent behavior |
+| Orchestration | silas-tools skills + agents | Skill definitions direct agent behavior |
 | Computer Use | computer-use MCP | Native browser and desktop control |
-| Context Manager | Session management + memory | ECC 2.0 session lifecycle |
+| Context Manager | Session management + memory | silas-tools 2.0 session lifecycle |
 | Task Queue | Memory-persisted task list | TodoWrite + memory files |
 
 ## Setup Guide

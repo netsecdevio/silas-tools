@@ -1,7 +1,7 @@
 ---
 name: seo
 description: Audit, plan, and implement SEO improvements across technical SEO, on-page optimization, structured data, Core Web Vitals, and content strategy. Use when the user wants better search visibility, SEO remediation, schema markup, sitemap/robots work, or keyword mapping.
-origin: ECC
+origin: silas-tools
 ---
 
 # SEO

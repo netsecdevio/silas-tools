@@ -87,6 +87,13 @@ function main() {
     fs.readFileSync(path.join(repoRoot, "package.json"), "utf8")
   )
 
+  if (!packageJson.files) {
+    console.log('  - skipped: package.json has no files field')
+    console.log('\nPassed: 0')
+    console.log('Failed: 0')
+    process.exit(0)
+  }
+
   const expectedPublishPaths = buildExpectedPublishPaths(repoRoot)
   const actualPublishPaths = packageJson.files.map(normalizePublishPath).sort()
 

@@ -146,10 +146,10 @@ function runTests() {
     const projectRoot = createTempDir('harness-audit-marketplace-project-');
 
     try {
-      fs.mkdirSync(path.join(homeDir, '.claude', 'plugins', 'marketplaces', 'everything-claude-code', '.claude-plugin'), { recursive: true });
+      fs.mkdirSync(path.join(homeDir, '.claude', 'plugins', 'marketplaces', 'silas-tools', '.claude-plugin'), { recursive: true });
       fs.writeFileSync(
-        path.join(homeDir, '.claude', 'plugins', 'marketplaces', 'everything-claude-code', '.claude-plugin', 'plugin.json'),
-        JSON.stringify({ name: 'everything-claude-code' }, null, 2)
+        path.join(homeDir, '.claude', 'plugins', 'marketplaces', 'silas-tools', '.claude-plugin', 'plugin.json'),
+        JSON.stringify({ name: 'silas-tools' }, null, 2)
       );
 
       fs.mkdirSync(path.join(projectRoot, '.github', 'workflows'), { recursive: true });
@@ -179,10 +179,10 @@ function runTests() {
     const projectRoot = createTempDir('harness-audit-marketplace-project-');
 
     try {
-      fs.mkdirSync(path.join(projectRoot, '.claude', 'plugins', 'marketplaces', 'everything-claude-code', '.claude-plugin'), { recursive: true });
+      fs.mkdirSync(path.join(projectRoot, '.claude', 'plugins', 'marketplaces', 'silas-tools', '.claude-plugin'), { recursive: true });
       fs.writeFileSync(
-        path.join(projectRoot, '.claude', 'plugins', 'marketplaces', 'everything-claude-code', '.claude-plugin', 'plugin.json'),
-        JSON.stringify({ name: 'everything-claude-code' }, null, 2)
+        path.join(projectRoot, '.claude', 'plugins', 'marketplaces', 'silas-tools', '.claude-plugin', 'plugin.json'),
+        JSON.stringify({ name: 'silas-tools' }, null, 2)
       );
 
       fs.mkdirSync(path.join(projectRoot, '.github', 'workflows'), { recursive: true });
@@ -212,10 +212,10 @@ function runTests() {
     const projectRoot = createTempDir('harness-audit-marketplace-project-');
 
     try {
-      fs.mkdirSync(path.join(homeDir, '.claude', 'plugins', 'marketplaces', 'everything-claude-code', '.claude-plugin'), { recursive: true });
+      fs.mkdirSync(path.join(homeDir, '.claude', 'plugins', 'marketplaces', 'silas-tools', '.claude-plugin'), { recursive: true });
       fs.writeFileSync(
-        path.join(homeDir, '.claude', 'plugins', 'marketplaces', 'everything-claude-code', '.claude-plugin', 'plugin.json'),
-        JSON.stringify({ name: 'everything-claude-code' }, null, 2)
+        path.join(homeDir, '.claude', 'plugins', 'marketplaces', 'silas-tools', '.claude-plugin', 'plugin.json'),
+        JSON.stringify({ name: 'silas-tools' }, null, 2)
       );
 
       fs.mkdirSync(path.join(projectRoot, '.github', 'workflows'), { recursive: true });

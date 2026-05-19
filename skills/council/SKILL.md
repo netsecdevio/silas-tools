@@ -1,7 +1,7 @@
 ---
 name: council
 description: Convene a four-voice council for ambiguous decisions, tradeoffs, and go/no-go calls. Use when multiple valid paths exist and you need structured disagreement before choosing.
-origin: ECC
+origin: silas-tools
 ---
 
 # Council
@@ -191,7 +191,7 @@ If the user wants another round:
 Question:
 
 ```text
-Should we ship ECC 2.0 as alpha now, or hold until the control-plane UI is more complete?
+Should we ship silas-tools 2.0 as alpha now, or hold until the control-plane UI is more complete?
 ```
 
 Likely council shape:

@@ -33,7 +33,7 @@ The script computes 7 fixed categories (`0-10` normalized each):
 7. Cost Efficiency
 
 Scores are derived from explicit file/rule checks and are reproducible for the same commit.
-The script audits the current working directory by default and auto-detects whether the target is the ECC repo itself or a consumer project using ECC.
+The script audits the current working directory by default and auto-detects whether the target is the silas-tools repo itself or a consumer project using silas-tools.
 
 ## Output Contract
 
@@ -43,7 +43,7 @@ Return:
 2. Category scores and concrete findings
 3. Failed checks with exact file paths
 4. Top 3 actions from the deterministic output (`top_actions`)
-5. Suggested ECC skills to apply next
+5. Suggested silas-tools skills to apply next
 
 ## Checklist
 

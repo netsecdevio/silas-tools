@@ -1,7 +1,7 @@
 ---
 name: research-ops
-description: Evidence-first current-state research workflow for ECC. Use when the user wants fresh facts, comparisons, enrichment, or a recommendation built from current public evidence and any supplied local context.
-origin: ECC
+description: Evidence-first current-state research workflow for silas-tools. Use when the user wants fresh facts, comparisons, enrichment, or a recommendation built from current public evidence and any supplied local context.
+origin: silas-tools
 ---
 
 # Research Ops
@@ -12,7 +12,7 @@ This is the operator wrapper around the repo's research stack. It is not a repla
 
 ## Skill Stack
 
-Pull these ECC-native skills into the workflow when relevant:
+Pull these silas-tools-native skills into the workflow when relevant:
 
 - `exa-search` for fast current-web discovery
 - `deep-research` for multi-source synthesis with citations

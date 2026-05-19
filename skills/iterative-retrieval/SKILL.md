@@ -1,7 +1,7 @@
 ---
 name: iterative-retrieval
 description: Pattern for progressively refining context retrieval to solve the subagent context problem
-origin: ECC
+origin: silas-tools
 ---
 
 # Iterative Retrieval Pattern
@@ -206,6 +206,6 @@ When retrieving context for this task:
 
 ## Related
 
-- [The Longform Guide](https://x.com/affaanmustafa/status/2014040193557471352) - Subagent orchestration section
+- [The Longform Guide](https://x.com/netsecdevio/status/2014040193557471352) - Subagent orchestration section
 - `continuous-learning` skill - For patterns that improve over time
-- Agent definitions bundled with ECC (manual install path: `agents/`)
+- Agent definitions bundled with silas-tools (manual install path: `agents/`)

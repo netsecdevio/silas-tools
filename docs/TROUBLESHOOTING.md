@@ -1,8 +1,8 @@
 # Troubleshooting
 
-Community-reported workarounds for current Claude Code bugs that can affect ECC users.
+Community-reported workarounds for current Claude Code bugs that can affect silas-tools users.
 
-These are upstream Claude Code behaviors, not ECC bugs. The entries below summarize the production-tested workarounds collected in [issue #644](https://github.com/affaan-m/everything-claude-code/issues/644) on Claude Code `v2.1.79` (macOS, heavy hook usage, MCP connectors enabled). Treat them as pragmatic stopgaps until upstream fixes land.
+These are upstream Claude Code behaviors, not silas-tools bugs. The entries below summarize the production-tested workarounds collected in [issue #644](https://github.com/netsecdevio/silas-tools/issues/644) on Claude Code `v2.1.79` (macOS, heavy hook usage, MCP connectors enabled). Treat them as pragmatic stopgaps until upstream fixes land.
 
 ## Community Workarounds For Open Claude Code Bugs
 
@@ -34,7 +34,7 @@ exit 2
 
 - On some current Claude Code builds, lower values may reduce the compaction threshold instead of extending it.
 - If you want more working room, remove `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` and prefer manual `/compact` at logical task boundaries.
-- Use ECC's `strategic-compact` guidance instead of forcing a lower auto-compact threshold.
+- Use silas-tools's `strategic-compact` guidance instead of forcing a lower auto-compact threshold.
 
 ### MCP connectors look connected but fail after compaction
 
@@ -53,7 +53,7 @@ exit 2
 **What helps:**
 
 - Restart the Claude Code session after changing hooks.
-- Advanced users sometimes script a local `/reload` command around `kill -HUP $PPID`, but ECC does not ship that because it is shell-dependent and not universally reliable.
+- Advanced users sometimes script a local `/reload` command around `kill -HUP $PPID`, but silas-tools does not ship that because it is shell-dependent and not universally reliable.
 
 ### Repeated `529 Overloaded` responses
 
@@ -67,9 +67,9 @@ exit 2
 - Disable unused MCP servers per project.
 - Compact manually at natural breakpoints instead of waiting for auto-compaction.
 
-## Related ECC Docs
+## Related Silas Docs
 
 - [hook-bug-workarounds.md](./hook-bug-workarounds.md) for the shorter hook/compaction/MCP recovery checklist.
-- [hooks/README.md](../hooks/README.md) for ECC's documented hook lifecycle and exit-code behavior.
+- [hooks/README.md](../hooks/README.md) for silas-tools's documented hook lifecycle and exit-code behavior.
 - [token-optimization.md](./token-optimization.md) for cost and context management settings.
-- [issue #644](https://github.com/affaan-m/everything-claude-code/issues/644) for the original report and tested environment.
+- [issue #644](https://github.com/netsecdevio/silas-tools/issues/644) for the original report and tested environment.

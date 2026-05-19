@@ -1,7 +1,7 @@
 ---
 name: benchmark
 description: Use this skill to measure performance baselines, detect regressions before/after PRs, and compare stack alternatives.
-origin: ECC
+origin: silas-tools
 ---
 
 # Benchmark — Performance Baseline & Regression Detection

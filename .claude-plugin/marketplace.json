@@ -1,34 +1,34 @@
 {
-  "name": "everything-claude-code",
+  "name": "silas-tools",
   "owner": {
-    "name": "Affaan Mustafa",
-    "email": "me@affaanmustafa.com"
+    "name": "Dynecon LLC",
+    "email": "7632431+DDinVA@users.noreply.github.com"
   },
   "metadata": {
-    "description": "Battle-tested Claude Code configurations from an Anthropic hackathon winner"
+    "description": "Silas project Claude Code plugin marketplace"
   },
   "plugins": [
     {
-      "name": "everything-claude-code",
+      "name": "silas-tools",
       "source": "./",
-      "description": "The most comprehensive Claude Code plugin — 38 agents, 156 skills, 72 legacy command shims, selective install profiles, and production-ready hooks for TDD, security scanning, code review, and continuous learning",
-      "version": "1.10.0",
+      "description": "Silas Claude Code plugin — agents, skills, hooks, commands, and rules curated for the Silas project (forked from silas-tools)",
+      "version": "0.1.0",
       "author": {
-        "name": "Affaan Mustafa",
-        "email": "me@affaanmustafa.com"
+        "name": "Doug Downer",
+        "email": "7632431+DDinVA@users.noreply.github.com"
       },
-      "homepage": "https://ecc.tools",
-      "repository": "https://github.com/affaan-m/everything-claude-code",
+      "homepage": "https://github.com/netsecdevio/silas-tools",
+      "repository": "https://github.com/netsecdevio/silas-tools",
       "license": "MIT",
       "keywords": [
         "agents",
         "skills",
         "hooks",
         "commands",
+        "silas",
         "tdd",
         "code-review",
-        "security",
-        "best-practices"
+        "security"
       ],
       "category": "workflow",
       "tags": [
@@ -36,10 +36,35 @@
         "skills",
         "hooks",
         "commands",
-        "tdd",
-        "code-review",
-        "security",
-        "best-practices"
+        "silas"
+      ],
+      "strict": false
+    },
+    {
+      "name": "rigor",
+      "source": "./plugins/rigor",
+      "description": "Rigorous SDLC workflow with producer-critic validation patterns",
+      "version": "0.17.0",
+      "author": {
+        "name": "zaphar"
+      },
+      "homepage": "https://dev.zaphar.net/zaphar/claude-zaphar",
+      "repository": "https://dev.zaphar.net/zaphar/claude-zaphar.git",
+      "license": "MIT",
+      "keywords": [
+        "sdlc",
+        "workflow",
+        "requirements",
+        "architecture",
+        "quality",
+        "validation",
+        "producer-critic"
+      ],
+      "category": "workflow",
+      "tags": [
+        "sdlc",
+        "quality-assurance",
+        "development-process"
       ],
       "strict": false
     }
